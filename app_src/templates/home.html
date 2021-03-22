@@ -1,6 +1,37 @@
-{% extends "primary.html" %}
+{% extends "basetemplate.html" %}
 
-{% block title %}Quiz-Q{% endblock %}
+{% block title %}UBER{% endblock %}
 
 {% block main %}
+
+<div id="app">
+    [[ message ]]
+</div>
+<div id="some">
+    [[ message ]]
+</div>
+<button class="btn btn-dark" onclick="myfunc()">Click Here!</button>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    var app = new Vue({
+        el: '#app',
+        delimiters: ['[[', ']]'],
+        data: {
+            message: 'Hello Vue!'
+        }
+    });
+    new Vue({
+        el: '#some',
+        delimiters: ['[[', ']]'],
+        data: {
+            message: 'something!'
+        }
+    });
+    function myfunc(){
+        app.message = 'yooo';
+    }
+</script>
 {% endblock %}

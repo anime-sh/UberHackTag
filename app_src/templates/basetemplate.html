@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>{% block title %}{% endblock %}</title>
+
+  <!-- Main styles for this application-->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/primary.css') }}">
+
+</head>
+
+<body>
+  <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-body border-bottom shadow-sm">
+    <p class="h5 my-0 me-md-auto fw-bold">UBER</p>
+    <nav class="my-2 my-md-0 me-md-3">
+      <a class="p-2 text-dark" href="#">Features</a>
+      <a class="p-2 text-dark" href="#">Enterprise</a>
+      <a class="p-2 text-dark" href="#">Support</a>
+      <a class="p-2 text-dark" href="#">Pricing</a>
+    </nav>
+    <a class="btn btn-outline-dark" href="#">Sign up</a>
+  </header>
+  <main class="container">
+    {% block main %}{% endblock %}
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+
+</html>
