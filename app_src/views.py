@@ -5,4 +5,4 @@ import random
 
 @app.route("/")
 def index():
-    return render_template("home.html",home="active")
+    return render_template("home.html")
