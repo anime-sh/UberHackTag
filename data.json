@@ -1,0 +1,59 @@
+{
+    "drivers": {
+        "Cause": [
+            {
+                "name": "Ashok",
+                "car": "Alto",
+                "rating": "4.2",
+                "kyd": "Ashok is from Ludhiana. Ashok has 3 children, 2 boys and one girl. He is a big cricket fan, his favourite player is Ashwin. He does not get to spend much time with his family, but every moment spent with them is special for him. ",
+                "carnumber": "DL-0702",
+                "needinfo": "Ashok's eldest daughter has reached college-going age, he will not be able to afford the college fees along with the expenses of his two other children, but he wants his daughter to get educated and be independant in the future. He does not want her to give up her dream to get get a college degree.",
+                "amountraised": 10000,
+                "amountneeded": 45000
+            },
+            {
+                "name": "Sima",
+                "car": "Maruti Swift Desire",
+                "rating": "4.5",
+                "kyd": "Sima is from UP. She has shifted to Delhi with her parents for thei cancer treatment. ",
+                "carnumber": "DL-4221",
+                "needinfo": "Sima's husband died and both her parents are suffering from lung cancer. She urgently needs money for their treatment.",
+                "amountraised": 20000,
+                "amountneeded": 250000
+            }
+        ],
+        "normal": [
+            {
+                "name": "Rakesh",
+                "car": "Honda Jazz",
+                "rating": "4.9",
+                "kyd": "Rakesh is from Bihar. Rakesh lives alone in Rangpuri. He has a pet cat called Tommy. Rakesh's family lives in his village to take care of his grandparents.",
+                "carnumber": "DL-0157"
+            }
+        ]
+    },
+    "locations": [
+        {
+            "lat": "28.638068585681683",
+            "long": "77.2431723630461"
+        },
+        {
+            "lat": "28.613175687241263",
+            "long": "77.2295421916846"
+        },
+        {
+            "lat": "28.53607952285118",
+            "long": "77.15074362716206"
+        },
+        {
+            "lat": "28.531315967110796",
+            "long": "77.2931663826448"
+        }
+    ],
+    "fares": {
+        "AA": 600,
+        "AB": 500,
+        "BB": 300,
+        "BA": 400
+    }
+}

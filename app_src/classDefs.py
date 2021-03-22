@@ -1,10 +1,14 @@
 import datetime
+import json
 
 
 class Location:
     def __init__(self, lat, long):
         self.lat = lat
         self.long = long
+
+    def toJSON(self):
+        return self.__dict__
 
 
 class Payment:
@@ -27,6 +31,9 @@ class Driver:
         self.kyd = kyd
         self.carnumber = carno
 
+    def toJSON(self):
+        return self.__dict__
+
 
 class Ride:
     def __init__(self, t, fro, usr, driv, fr, com, datetime, rfc=False, expay=0):
@@ -47,3 +54,6 @@ class CauseDriver(Driver):
         self.needinfo = needinf
         self.amountraised = amtraised
         self.amountneeded = amtneeded
+
+    def toJSON(self):
+        return self.__dict__
