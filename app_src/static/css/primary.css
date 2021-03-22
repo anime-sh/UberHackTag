@@ -2,6 +2,10 @@
  * Base structure
  */
 
+main > .container {
+  padding: 60px 15px 0;
+}
+
 html,
 body {
   height: 100%;
