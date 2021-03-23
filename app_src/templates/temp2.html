@@ -19,15 +19,20 @@
     function myfunc() {
         $("#view").load("temp.html");
     };
-    async function getdata() {
-        const response = await fetch("getdata");
-        const data = await response.json();
-        console.log(data);
-        new Vue({
-            el: '#driver-details',
-            delimiters: ['[[',']]'],
-            data: data
-        })
-    }
-    getdata();
+    // async function getdata() {
+    //     const response = await fetch("getdata");
+    //     const data = await response.json();
+    //     console.log(data);
+    //     new Vue({
+    //         el: '#driver-details',
+    //         delimiters: ['[[',']]'],
+    //         data: data
+    //     })
+    // }
+    // getdata();
+    new Vue({
+        el: '#driver-details',
+        delimiters: ['[[', ']]'],
+        data: {{ driver_data | tojson | safe }}
+    });
 </script>

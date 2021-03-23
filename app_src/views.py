@@ -14,10 +14,12 @@ def temp():
 
 @app.route("/temp2.html")
 def temp2():
-    return render_template("temp2.html")
-
-@app.route("/getdata")
-def getdata():
     with open("data.json") as f:
         data = json.load(f)
-    return make_response(jsonify(data))
+    return render_template("temp2.html", driver_data = data)
+
+# @app.route("/getdata")
+# def getdata():
+#     with open("data.json") as f:
+#         data = json.load(f)
+#     return make_response(jsonify(data))
