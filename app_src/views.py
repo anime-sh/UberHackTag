@@ -28,8 +28,8 @@ def temp2():
 @app.route("/sign-up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
-
-        req = request.form
+        
+        req = request.form 
         print(type(req['file']))
         missing = list()
 
