@@ -23,3 +23,18 @@ def temp2():
 #     with open("data.json") as f:
 #         data = json.load(f)
 #     return make_response(jsonify(data))
+
+@app.route("/sign-up", methods=['GET', 'POST'])
+def register_for_cause():
+    return render_template("/sign_up.html")
+    if request.method == "POST":
+        req = request.form
+        missing = list()
+        for k, v in req.items():
+            if v == "":
+                missing.append(k)
+        if missing:
+            feedback = f"Missing fields for {', '.join(missing)}"
+            return render_template("/sign_up.html", feedback=feedback)
+        return redirect(request.url)
+    return render_template("temp2.html")
