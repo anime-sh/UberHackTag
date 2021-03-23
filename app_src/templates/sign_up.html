@@ -22,10 +22,16 @@
           <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
         </div>
         <div class="form-group">
-          <label>Upload documents</label>
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" name="image" id="image">
-          </div>
+            <label>Upload documents</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" name="file" id="file">
+              <script>
+                var loadFile = function(event) {
+                    var filr = document.getElementById('file');
+                    file.src = URL.createObjectURL(event.target.files[0]);
+                };
+              </script>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Sign up</button>
         {% if feedback %}
