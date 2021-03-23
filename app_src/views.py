@@ -1,5 +1,6 @@
+from flask.helpers import make_response
 from app_src import app
-from flask import render_template
+from flask import render_template, jsonify, make_response
 import json
 import random
 
@@ -13,7 +14,15 @@ def temp():
 
 @app.route("/temp2.html")
 def temp2():
-    return render_template("temp2.html")
+    with open("data.json") as f:
+        data = json.load(f)
+    return render_template("temp2.html", driver_data = data)
+
+# @app.route("/getdata")
+# def getdata():
+#     with open("data.json") as f:
+#         data = json.load(f)
+#     return make_response(jsonify(data))
 
 @app.route("/sign-up", methods=['GET', 'POST'])
 def register_for_cause():
