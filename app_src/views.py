@@ -30,9 +30,9 @@ def sign_up():
     if request.method == "POST":
 
         req = request.form
-        print(type(req['file']))
-        missing = list()
 
+        missing = list()
+        print(req)
         for k, v in req.items():
             if v == "":
                 missing.append(k)
