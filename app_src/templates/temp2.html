@@ -1,5 +1,16 @@
 <div class="card-body d-flex flex-column">
     <p>Now we are riding!</p>
+    <h4>DRIVER DATA</h4>
+    <ol id="driver-details">
+        <li v-for="driver in drivers.cause">
+            Name: [[driver.name]]
+            <ul>
+                <li v-for="value in driver">
+                    [[value]]
+                </li>
+            </ul>
+        </li>
+    </ol>
     <button class="btn btn-dark mt-auto align-self-center" onclick="myfunc()" style="width: 50%;">Go to
         view1</button>
 </div>
@@ -8,4 +19,15 @@
     function myfunc() {
         $("#view").load("temp.html");
     };
+    async function getdata() {
+        const response = await fetch("getdata");
+        const data = await response.json();
+        console.log(data);
+        new Vue({
+            el: '#driver-details',
+            delimiters: ['[[',']]'],
+            data: data
+        })
+    }
+    getdata();
 </script>
