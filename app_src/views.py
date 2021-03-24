@@ -25,21 +25,31 @@ def temp2():
 #         data = json.load(f)
 #     return make_response(jsonify(data))
 
-@app.route("/sign-up", methods=["GET", "POST"])
+
+@app.route("/sign-up")
+def sign_up_landing():
+    return render_template("/sign_up.html")
+
+
+@app.route("/sign-up/create_app", methods=['POST'])
 def sign_up():
     if request.method == "POST":
-
-        req = request.form
-
-        missing = list()
+        print("hello")
+        req = request.get_json()
         print(req)
-        for k, v in req.items():
-            if v == "":
-                missing.append(k)
+        res = make_response(jsonify({"message": "OK"}), 200)
+        return res
+        # req = request.form
 
-        if missing:
-            feedback = f"Missing fields for {', '.join(missing)}"
-            return render_template("/sign_up.html", feedback=feedback)
+        # missing = list()
+        # print(req)
+        # for k, v in req.items():
+        #     if v == "":
+        #         missing.append(k)
 
-        return redirect(request.url)
+        # if missing:
+        #     feedback = f"Missing fields for {', '.join(missing)}"
+        #     return render_template("/sign_up.html", feedback=feedback)
+
+        # return redirect(request.url)
     return render_template("/sign_up.html")
