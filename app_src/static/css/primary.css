@@ -16,6 +16,7 @@ body {
   background-size: cover;
 }
 
+.form-select:focus, .form-select:active:focus, .form-select.active:focus,
 .btn:focus, .btn:active:focus, .btn.active:focus {
   outline: none;
   box-shadow: none;
