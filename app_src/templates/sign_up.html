@@ -27,17 +27,13 @@
           <label>Upload documents</label>
           <div class="custom-file">
             <input type="file" class="custom-file-input" name="file" id="file">
-
           </div>
-          
-          <!-- <label class="filebutton">
-            Upload Document
-            <span><input type="file" id="file" name="file"></span>
-            </label> -->
         </div>
 
-        
-        <button type="submit" class="btn btn-primary" onclick="submit()">Sign up</button>
+        <div class="button">
+          <button type="submit" class="btn btn-primary" onclick="submit()">Sign up</button>
+
+        </div>
       </div>
       <!-- </form> -->
 
@@ -52,6 +48,7 @@
   function submit() {
 
     var username = document.getElementById("username");
+    // console.log(`username ${username.value}`)
     var email = document.getElementById("email");
     var file = document.getElementById("file");
 
@@ -61,27 +58,32 @@
       file: file.value
     };
     console.log(entry)
-    // fetch(`${window.origin}/sign-up/create_app`, {
-    //   method: "POST",
-    //   credentials: "include",
-    //   body: JSON.stringify(entry),
-    //   cache: "no-cache",
-    //   headers: new Headers({
-    //     "content-type": "application/json"
-    //   })
-    // })
-    //   .then(function (response) {
-    //     if (response.status !== 200) {
-    //       console.log(`Looks like there was a problem. Status code: ${response.status}`);
-    //       return;
-    //     }
-    //     response.json().then(function (data) {
-    //       console.log(data);
-    //     });
-    //   })
-    //   .catch(function (error) {
-    //     console.log("Fetch error: " + error);
-    //   });
+    fetch(`${window.origin}/sign-up/create_app`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(entry),
+      cache: "no-cache",
+      headers: new Headers({
+        "content-type": "application/json"
+      })
+    })
+      .then(function (response) {
+        if (response.status !== 200) {
+          console.log(`Looks like there was a problem. Status code: ${response.status}`);
+          return;
+        }
+        response.json().then(function (data_) {
+          
+          if (data_.message === "OK") {
+            window.location.href=`${window.origin}/sign-up/success`;
+          } else {
+            window.location.href = `${window.origin}/sign-up/missing/${data_.message}`;
+          }
+        });
+      })
+      .catch(function (error) {
+        console.log("Fetch error: " + error);
+      });
   }
 </script>
 
