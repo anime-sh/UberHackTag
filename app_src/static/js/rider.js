@@ -35,4 +35,4 @@ const rider= createApp({
         }
     }
 })
-rider.mount('#app')
+rider.mount('#view')
