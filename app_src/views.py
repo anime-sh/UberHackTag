@@ -9,6 +9,10 @@ import random
 def index():
     return render_template("home.html")
 
+@app.route("/rider")
+def riderIndex():
+    return render_template("rider_home.html")
+
 @app.route("/temp.html")
 def temp():
     return render_template("temp.html")

@@ -7,6 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>{% block title %}{% endblock %}</title>
 
+  <!-- fontawesome -->
+  <script src="https://kit.fontawesome.com/7b36b4a9b2.js" crossorigin="anonymous"></script>
+
   <!-- Main styles for this application-->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/primary.css') }}">
@@ -18,7 +21,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Uber HackTag</a>
       <div class="navbar-right">
-        <a class="btn btn-outline-light" href="#">Rider View</a>
+        <a class="btn btn-outline-light" href="rider">Rider View</a>
         <a class="btn btn-outline-light" href="#">Driver View</a>
       </div>
     </div>
@@ -50,9 +53,10 @@
   <main class="container">
   </main> -->
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <!-- <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script> -->
+  <!-- <script src="https://unpkg.com/@popperjs/core@2"></script> -->
   <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
   {% block scripts %}{% endblock %}
 </body>
 
