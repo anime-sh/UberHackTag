@@ -114,3 +114,48 @@ def booked_cars():
 @app.route('/gmplot')
 def show_map():
     return render_template('/gmplot.html')
+index = -1
+fare = 0
+extrafare = 0
+rfc = 0
+@app.route("/rider/riding", methods = ["GET","POST"])
+def ride_car():
+    global index
+    global fare
+    global extrafare
+    global rfc
+    if(request.method == "GET"):
+        print(request.args)
+        f  = open('data.json')
+        dicto = {}
+        var = (json.load(f))
+        if(index==-1):
+            #rfc = request.args['rfc'] //needs to be called via animesh
+            rfc = 1
+            if(rfc==1):
+                index = random.randint(0,len(var['drivers']['Cause'])-1)
+            else:
+                index = random.randint(0,len(var['drivers']['normal'])-1)
+            #fare =int(request.args['fare'])
+            #extrafare = int(request.args['extrafare'])
+            fare = 100
+            extrafare = 200
+            print(index)
+        else:
+            fare = int(request.args['fare'])
+            extrafare = int(request.args['extrafare'])+int(request.args['addition'])
+            #index = request.args['index']
+            #fare = int(request.args['fare'])
+            #extrafare = int(request.args['extrafare'])
+
+        index = int(index)
+        if(rfc):
+            dicto = var['drivers']['Cause'][index]
+        else :
+            dicto = var['drivers']['normal'][index]
+        if not rfc:
+            return render_template('/x.html',name = dicto['name'], car = dicto['car'], rating = dicto['rating'] , carnumber = dicto['carnumber'], kyd = dicto['kyd'], index = index, fare = fare, extrafare = extrafare, rfc = rfc )
+        else:
+            return render_template('/x.html',name = dicto['name'], car = dicto['car'], rating = dicto['rating'] , carnumber = dicto['carnumber'], kyd = dicto['kyd'], index = index, fare = fare, extrafare = extrafare, rfc = rfc, needinfo = dicto['needinfo'] , amountraised = dicto['amountraised'], amountneeded = dicto['amountneeded'] )
+
+    render_template('/temp2.html')
