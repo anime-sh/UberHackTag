@@ -52,6 +52,14 @@
             <div id="mapframe">
                 <iframe v-if="showmap" v-bind:src="plot_url" style="height:200px;width:300px;" v-bind:title="plot_url"></iframe>
             </div>
+            <div id="fare" v-if="showmap">
+                <p>base fare = [[base_fare]] </p>
+                <div id="extra fare" v-if="rfc">
+                    <p>ride for cause fare = [[extra_fare]]</p>
+                </div>
+            </div>
+            <button v-if="showmap" class="btn btn-dark mt-auto align-self-center"
+                style="width: fit-content;">Confirm</button>
         </div>
     </div>
 </div>

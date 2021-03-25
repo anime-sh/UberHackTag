@@ -9,6 +9,9 @@ const rider = createApp({
             dropoff2: 'India Gate',
             showmap: false,
             plot_url: 'lmao lmao',
+            rfc:false,
+            base_fare:undefined,
+            extra_fare: undefined,
         }
     },
     methods: {
@@ -30,8 +33,8 @@ const rider = createApp({
 
             }
             var rfc = $("#flexSwitchCheckDefault").is(":checked");
-            console.log(`From ${pickuploc} to ${dropoffloc} rfc: ${rfc}`)
-
+            console.log(`From ${pickuploc} to ${dropoffloc} rfc: ${rfc}`);
+            this.rfc=rfc;
             entry={
                 source:`pickup${$("#pickup").val()}`,
                 dest:`dropoff${$("#dropoff").val()}`
@@ -51,6 +54,8 @@ const rider = createApp({
             console.log(window.location.pathname);
             this.showmap=true;
             this.plot_url=`${window.origin}/gmplot`;
+            this.base_fare=data['base'];
+            this.extra_fare=data['extra'];
         }
     }
 })
