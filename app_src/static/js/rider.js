@@ -9,8 +9,8 @@ const rider = createApp({
             dropoff2: 'India Gate',
             showmap: false,
             plot_url: 'lmao lmao',
-            rfc:false,
-            base_fare:undefined,
+            rfc: false,
+            base_fare: undefined,
             extra_fare: undefined,
         }
     },
@@ -34,10 +34,10 @@ const rider = createApp({
             }
             var rfc = $("#flexSwitchCheckDefault").is(":checked");
             console.log(`From ${pickuploc} to ${dropoffloc} rfc: ${rfc}`);
-            this.rfc=rfc;
-            entry={
-                source:`pickup${$("#pickup").val()}`,
-                dest:`dropoff${$("#dropoff").val()}`
+            this.rfc = rfc;
+            entry = {
+                source: `pickup${$("#pickup").val()}`,
+                dest: `dropoff${$("#dropoff").val()}`
             };
             const requestOptions = {
                 method: "POST",
@@ -48,14 +48,14 @@ const rider = createApp({
                     "content-type": "application/json"
                 })
             }
-            const response = await fetch(`${window.origin}/rider/booked`,requestOptions);
+            const response = await fetch(`${window.origin}/rider/booked`, requestOptions);
             const data = await response.json();
             console.log(data)
             console.log(window.location.pathname);
-            this.showmap=true;
-            this.plot_url=`${window.origin}/gmplot`;
-            this.base_fare=data['base'];
-            this.extra_fare=data['extra'];
+            this.showmap = true;
+            this.plot_url = `${window.origin}/gmplot`;
+            this.base_fare = data['base'];
+            this.extra_fare = data['extra'];
         }
     }
 })
