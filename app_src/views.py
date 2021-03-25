@@ -8,7 +8,6 @@ import gmaps
 import gmplot
 from statistics import mean
 import os
-api_key = os.environ['GOOGLE_API_KEY']
 
 @app.route("/")
 def index():
@@ -77,15 +76,24 @@ def sign_up():
     # return render_template("/sign_up.html")
 @app.route("/rider/booked", methods = ["GET","POST"])
 def booked_cars():
-    # if request.method == "POST":
-        # req = request.get_json()
+    if request.method == "POST":
+        print("HELLO")
+        req = request.get_json()
+        print(req)
+        total_dict={}
+        with open("./data.json") as f:
+            total_dict=json.load(f)
+        from_dict=total_dict["locations"][req["source"]]
+        to_dict=total_dict["locations"][req["dest"]]
         # gmap = gmplot.GoogleMapPlotter(req['fromlat'],req['fromlong'], 20)        
         # lats = [float(req['tolat']),float(req['fromlat'])]
         # longs = [float(req['tolong']),float(req['fromlong'])]
-    gmaps.configure(api_key)
-    lats = [28.638068585681683,28.613175687241263]
-    longs = [77.2431723630461,77.2295421916846]
-    gmap = gmplot.GoogleMapPlotter(mean(lats),mean(longs), 13)
-    gmap.scatter(lats, longs , 'black', size = 20)
-    gmap.draw('/gmplot.html')
-    # return render_template('/sign_up.html')
+        api_key = os.environ['GOOGLE_API_KEY']
+        gmaps.configure(api_key)
+        lats = [float(from_dict['lat']),float(to_dict['lat'])]
+        longs = [float(from_dict['long']),float(to_dict['long'])]
+        gmap = gmplot.GoogleMapPlotter(mean(lats),mean(longs), 13)
+        gmap.scatter(lats, longs , 'black', size = 20)
+        gmap.draw('app_src/templates/gmplot.html')
+        return make_response(jsonify({"message": "ok"}), 200)
+    return render_template('/sign_up.html')

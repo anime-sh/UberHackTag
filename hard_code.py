@@ -1,5 +1,5 @@
 import json
-from app_src import User,Location,Payment,Driver,CauseDriver 
+from app_src import User, Location, Payment, Driver, CauseDriver
 
 destA = Location("28.638068585681683", "77.2431723630461")
 destB = Location("28.613175687241263", "77.2295421916846")
@@ -40,20 +40,25 @@ UserAname = "Alpha"
 UserPhonenum = "9999999999"
 UserPaymentDetails = Payment("alpha@sbiok.in")
 
-
 DC = CauseDriver(DriverCname, DriverCcar, DriverCrating, DriverCkyd,
-                 DriverCcarno, DriverCneedinfo, DriverCamtneeded, DriverCamtraised)
+                 DriverCcarno, DriverCneedinfo, DriverCamtneeded,
+                 DriverCamtraised)
 DA = CauseDriver(DriverAname, DriverAcar, DriverArating, DriverAkyd,
-                 DriverAcarno, DriverAneedinfo, DriverAamtneeded, DriverAamtraised)
+                 DriverAcarno, DriverAneedinfo, DriverAamtneeded,
+                 DriverAamtraised)
 DB = Driver(DriverBname, DriverBcar, DriverBrating, DriverBkyd, DriverBcarno)
-
 
 data_dic = {
     "drivers": {
         "Cause": [DA.toJSON(), DC.toJSON()],
         "normal": [DB.toJSON()]
     },
-    "locations": [destA.toJSON(), destB.toJSON(), sourceA.toJSON(), sourceB.toJSON()],
+    "locations": {
+        "dropoff1": destA.toJSON(),
+        "dropoff2": destB.toJSON(),
+        "pickup1": sourceA.toJSON(),
+        "pickup2": sourceB.toJSON()
+    },
     "fares": {
         "AA": fareAA,
         "AB": fareAB,
@@ -62,6 +67,5 @@ data_dic = {
     }
 }
 
-
-with open("data.json","w") as f:
-    json.dump(data_dic,f)
+with open("data.json", "w") as f:
+    json.dump(data_dic, f)
