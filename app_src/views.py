@@ -126,9 +126,9 @@ def ride_car():
     global rfc
     if(request.method == "GET"):
         print(request.args)
-        f  = open('data.json')
+        with open('./data.json') as f:
+            var = (json.load(f))
         dicto = {}
-        var = (json.load(f))
         if(index==-1):
             #rfc = request.args['rfc'] //needs to be called via animesh
             rfc = 1
