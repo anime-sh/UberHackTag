@@ -1,0 +1,60 @@
+{% extends "basetemplate.html" %}
+{% block title %}Sign up{% endblock %}
+
+{% block main %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dashboard</title>
+</head>
+<body>
+  <h1 style="color: green">Ride Details</h1>
+  <p>{{name}}</p>
+  <p>{{car}}</p>
+  <p>{{rating}}</p>
+  <p>{{carnumber}}</p>
+  <p>{{kyd}}</p>
+  
+  
+  <div class='button'>
+    <buttonf onclick="ShowAndHide()">Know Your Driver</button>
+  </div>
+  
+  <div id="SectionName" style="display:none">Text to be shown and hidden
+    <div class='button'>
+      <input type="text" id="fname" name="fname"><br><br>
+      <button onclick="myCalculation()">Calculate</button>
+      <!-- <a href="/rider/riding?index={{index}}&fare={{fare}}&extrafare={{extrafare}}" class="button"></a>     -->
+    </div>
+    <p>Your Donation: {{extrafare}}</p>
+  </div>
+  
+</body>
+{% endblock %}
+{%block scripts%}
+<script>
+  function myCalculation() 
+  {
+    var v  = Number(document.getElementById('fname').value)
+    console.log(v)
+    console.log('hello')
+    window.location.href = "/rider/riding?index={{index}}&fare={{fare}}&extrafare={{extrafare}}&addition="+v;
+  }
+  function ShowAndHide()
+  {
+    console.log('hello2')
+    var x = document.getElementById('SectionName');
+    if (x.style.display == 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+  }
+</script>
+</html>
+{% endblock %}
