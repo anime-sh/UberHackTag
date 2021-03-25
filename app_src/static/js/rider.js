@@ -5,8 +5,8 @@ const rider = createApp({
         return {
             pickup1: 'Vasant Kunj',
             pickup2: 'Sarita Vihar',
-            dropoff1: 'India Gate',
-            dropoff2: 'Feroz Shah Kotla Stadium',
+            dropoff1: 'Feroz Shah Kotla Stadium',
+            dropoff2: 'India Gate',
             showmap: false,
         }
     },
@@ -47,7 +47,7 @@ const rider = createApp({
             const response = await fetch(`${window.origin}/rider/booked`,requestOptions);
             const data = await response.json();
             console.log(data)
-
+            this.showmap=true
         }
     }
 })

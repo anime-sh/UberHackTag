@@ -49,6 +49,9 @@
             </div>
             <button v-on:click="requestRide()" class="btn btn-dark mt-auto align-self-center"
                 style="width: fit-content;">Request now</button>
+            <div id="mapframe">
+                <iframe v-if="showmap" src="gmplot.html" style="height:200px;width:300px;" title="Iframe Example"></iframe>
+            </div>
         </div>
     </div>
 </div>
