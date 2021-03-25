@@ -8,6 +8,7 @@ const rider = createApp({
             dropoff1: 'Feroz Shah Kotla Stadium',
             dropoff2: 'India Gate',
             showmap: false,
+            plot_url: 'lmao lmao',
         }
     },
     methods: {
@@ -47,7 +48,9 @@ const rider = createApp({
             const response = await fetch(`${window.origin}/rider/booked`,requestOptions);
             const data = await response.json();
             console.log(data)
-            this.showmap=true
+            console.log(window.location.pathname);
+            this.showmap=true;
+            this.plot_url=`${window.origin}/gmplot`;
         }
     }
 })

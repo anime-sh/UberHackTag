@@ -1,7 +1,7 @@
 from flask.helpers import make_response
 from flask import request, redirect
 from app_src import app
-from flask import render_template, jsonify, make_response
+from flask import render_template, jsonify, make_response,send_file
 import json
 import random
 import gmaps
@@ -97,3 +97,8 @@ def booked_cars():
         gmap.draw('app_src/templates/gmplot.html')
         return make_response(jsonify({"message": "ok"}), 200)
     return render_template('/sign_up.html')
+
+
+@app.route('/gmplot')
+def show_map():
+    return render_template('/gmplot.html')
