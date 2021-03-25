@@ -4,6 +4,8 @@ from app_src import app
 from flask import render_template, jsonify, make_response
 import json
 import random
+import os
+import gmaps
 
 
 @app.route("/")
@@ -71,17 +73,17 @@ def sign_up():
 
         
     # return render_template("/sign_up.html")
-@app.route("/rider/booked", methods = ["GET","POST"])
-def booked_cars():
-    if request.method == "POST":
-        # req = request.get_json()
-        # gmap = gmplot.GoogleMapPlotter(req['fromlat'],req['fromlong'], 20)        
-        # lats = [float(req['tolat']),float(req['fromlat'])]
-        # longs = [float(req['tolong']),float(req['fromlong'])]
-        gmaps.configure(api_key="AI...")
-        lats = [28.638068585681683,28.613175687241263]
-        longs = [77.2431723630461,77.2295421916846]
-        gmap = gmplot.GoogleMapPlotter(mean(lats),mean(longs), 13)
-        gmap.scatter(lats, longs , 'black', size = 20)
-        gmap.draw('/gmplot.html')
-    return render_template('/sign_up.html')
+# @app.route("/rider/booked", methods = ["GET","POST"])
+# def booked_cars():
+#     if request.method == "POST":
+#         # req = request.get_json()
+#         # gmap = gmplot.GoogleMapPlotter(req['fromlat'],req['fromlong'], 20)        
+#         # lats = [float(req['tolat']),float(req['fromlat'])]
+#         # longs = [float(req['tolong']),float(req['fromlong'])]
+#         gmaps.configure(api_key=os.environ['GOOGLE_API_KEY'])
+#         lats = [28.638068585681683,28.613175687241263]
+#         longs = [77.2431723630461,77.2295421916846]
+#         gmap = gmplot.GoogleMapPlotter(mean(lats),mean(longs), 13)
+#         gmap.scatter(lats, longs , 'black', size = 20)
+#         gmap.draw('/gmplot.html')
+#     return render_template('/sign_up.html')
