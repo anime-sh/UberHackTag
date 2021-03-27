@@ -108,25 +108,24 @@ def booked_cars():
                 "base": base_fare,
                 "extra": extra_fare
             }), 200)
-    return render_template('/sign_up.html')
 
 
 @app.route('/gmplot_pickup1_dropoff1')
 def show_map1():
-    return render_template('/gmplot_pickup1_dropoff1.html')
+    return render_template('gmplot_pickup1_dropoff1.html')
 
 
 @app.route('/gmplot_pickup1_dropoff2')
 def show_map2():
-    return render_template('/gmplot_pickup1_dropoff2.html')
+    return render_template('gmplot_pickup1_dropoff2.html')
 
 @app.route('/gmplot_pickup2_dropoff1')
 def show_map3():
-    return render_template('/gmplot_pickup2_dropoff1.html')
+    return render_template('gmplot_pickup2_dropoff1.html')
 
 @app.route('/gmplot_pickup2_dropoff2')
 def show_map4():
-    return render_template('/gmplot_pickup2_dropoff2.html')
+    return render_template('gmplot_pickup2_dropoff2.html')
 
 
 
@@ -142,7 +141,7 @@ def ride_car():
     global fare
     global extrafare
     global rfc
-    if (request.method == "GET"):
+    if (request.method == "POST"):
         print(request.args)
         with open('./data.json') as f:
             var = (json.load(f))
@@ -198,4 +197,3 @@ def ride_car():
                                    amountraised=dicto['amountraised'],
                                    amountneeded=dicto['amountneeded'])
 
-    render_template('/temp2.html')
