@@ -6,7 +6,7 @@
 
 <div class="row justify-content-center my-5">
     <div class="card shadow overflow-auto px-0" style="width: 30rem; height: 34rem;" id="view">
-        <div class="card-body d-flex flex-column">
+        <div v-if="!showmap" class="card-body d-flex flex-column">
             <div class="row mt-auto" style="padding-top: 4rem;">
                 <div class="col px-1">
                     <div class="form-floating">
@@ -47,19 +47,21 @@
                     </div>
                 </div>
             </div>
-            <button v-if="!showmap" v-on:click="requestRide()" class="btn btn-dark mt-auto align-self-center"
+            <button v-on:click="requestRide()" class="btn btn-dark mt-auto align-self-center"
                 style="width: fit-content;">Request now</button>
+        </div>
+        <div v-if="showmap" class="card-body d-flex flex-column">
             <div id="mapframe">
-                <iframe v-if="showmap" v-bind:src="plot_url" style="height:200px;width:300px;"
+                <iframe v-bind:src="plot_url" style="height:200px;width:300px;"
                     v-bind:title="plot_url"></iframe>
             </div>
-            <div id="fare" v-if="showmap">
+            <div id="fare">
                 <p>base fare = [[base_fare]] </p>
                 <div id="extra fare" v-if="rfc">
                     <p>ride for cause fare = [[extra_fare]]</p>
                 </div>
             </div>
-            <button v-if="showmap" class="btn btn-dark mt-auto align-self-center"
+            <button class="btn btn-dark mt-auto align-self-center"
                 style="width: fit-content;">Confirm</button>
         </div>
     </div>
