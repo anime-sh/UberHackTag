@@ -12,28 +12,28 @@ const rider = createApp({
             rfc: false,
             base_fare: undefined,
             extra_fare: undefined,
+            pickuploc: undefined,
+            dropoffloc: undefined
         }
     },
     methods: {
         async requestRide() {
             console.log("Hello Ride requested")
-            var pickuploc = "oh no";
             if ($("#pickup").val() === '1') {
-                pickuploc = this.pickup1;
+                this.pickuploc = this.pickup1;
             }
             else {
-                pickuploc = this.pickup2;
+                this.pickuploc = this.pickup2;
             }
-            var dropoffloc = "oh no no";
             if ($("#dropoff").val() === '1') {
-                dropoffloc = this.dropoff1;
+                this.dropoffloc = this.dropoff1;
             }
             else {
-                dropoffloc = this.dropoff2;
+                this.dropoffloc = this.dropoff2;
 
             }
             var rfc = $("#flexSwitchCheckDefault").is(":checked");
-            console.log(`From ${pickuploc} to ${dropoffloc} rfc: ${rfc}`);
+            console.log(`From ${this.pickuploc} to ${this.dropoffloc} rfc: ${rfc}`);
             this.rfc = rfc;
             entry = {
                 source: `pickup${$("#pickup").val()}`,

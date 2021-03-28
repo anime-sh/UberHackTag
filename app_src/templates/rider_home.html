@@ -51,18 +51,23 @@
                 style="width: fit-content;">Request now</button>
         </div>
         <div v-if="showmap" class="card-body d-flex flex-column">
-            <div id="mapframe">
-                <iframe v-bind:src="plot_url" style="height:200px;width:300px;"
+            <div class="jumbotron">
+                <h2 class="display-4 mb-3">Ride details</h2>
+                <h5 class="mb-3">From <span style="font-weight: 700;">[[pickuploc]]</span> to <span style="font-weight: 700;">[[dropoffloc]]</span></h5>
+                <h4 class="mb-0" style="font-weight: 500;">Base fare: [[base_fare]] </h4>
+                <h5><span v-if="rfc" class="badge bg-info text-white">Ride for cause fare: [[extra_fare]]</span></h5>
+                <hr class="my-4">
+            </div>
+            <!-- <h1>Ride Details</h1>
+            <div id="fare">
+            </div>
+            <p>From: [[pickuploc]]</p>
+            <p>To: [[dropoffloc]]</p> -->
+            <div class="embed-responsive embed-responsive-16by9 align-self-center mt-auto">
+                <iframe class="embed-responsive-item" v-bind:src="plot_url" style="height:200px;width:300px;"
                     v-bind:title="plot_url"></iframe>
             </div>
-            <div id="fare">
-                <p>base fare = [[base_fare]] </p>
-                <div id="extra fare" v-if="rfc">
-                    <p>ride for cause fare = [[extra_fare]]</p>
-                </div>
-            </div>
-            <button class="btn btn-dark mt-auto align-self-center"
-                style="width: fit-content;">Confirm</button>
+            <button class="btn btn-dark mt-auto align-self-center" style="width: fit-content;">Confirm</button>
         </div>
     </div>
 </div>
