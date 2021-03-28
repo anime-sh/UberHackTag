@@ -1,5 +1,5 @@
-const { createApp, ref, computed } = Vue;
-const rider = createApp({
+rider = new Vue({
+    el: '#view',
     delimiters: ['[[', ']]'],
     data() {
         return {
@@ -65,4 +65,3 @@ const rider = createApp({
         }
     }
 })
-rider.mount('#view')
