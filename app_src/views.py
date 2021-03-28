@@ -113,20 +113,20 @@ def booked_cars():
 
 @app.route('/gmplot_pickup1_dropoff1')
 def show_map1():
-    return render_template('gmplot_pickup1_dropoff1.html')
+    return render_template('/gmplot_pickup1_dropoff1.html')
 
 
 @app.route('/gmplot_pickup1_dropoff2')
 def show_map2():
-    return render_template('gmplot_pickup1_dropoff2.html')
+    return render_template('/gmplot_pickup1_dropoff2.html')
 
 @app.route('/gmplot_pickup2_dropoff1')
 def show_map3():
-    return render_template('gmplot_pickup2_dropoff1.html')
+    return render_template('/gmplot_pickup2_dropoff1.html')
 
 @app.route('/gmplot_pickup2_dropoff2')
 def show_map4():
-    return render_template('gmplot_pickup2_dropoff2.html')
+    return render_template('/gmplot_pickup2_dropoff2.html')
 
 
 
