@@ -17,7 +17,7 @@
       <div class="card p-2 shadow mt-auto" style="border-radius: 0.3rem;">
         <p>[[kyd]] <span v-if="rfc">To know more about your driver click on the "Know your driver" button below.</span></p>
         <!-- Button trigger modal -->
-        <button v-if="rfc" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button v-if="rfc" type="button" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Know your driver
         </button>
       </div>
@@ -25,7 +25,21 @@
     </div>
     <div v-if="ridefinished" class="card-body d-flex flex-column">
       <!-- ride finished here -->
-      <button v-on:click="finish()" class="btn btn-dark mt-auto align-self-center" style="width: fit-content;">Submit</button>
+      <div class="jumbotron">
+        <h3 class="display-4 mb-3">FARE DETAILS</h3>
+        <h5 class="mb-1" style="font-weight: 500;">Base fare: [[fare]]</h5>
+        <h5><span v-if="rfc" class="badge bg-info text-white">Ride for cause fare: [[extrafare]]</span></h5>
+        <h5><span v-if="donation" class="badge bg-info text-white">Extra donation: [[donation]]</span></h5>
+        <hr class="my-4">
+        <h4 class="mb-1" style="font-weight: 500;">Total fare: [[fare+extrafare+donation]]</h4>
+      </div>
+      <div class="card p-2 shadow mt-auto" style="border-radius: 0.3rem;">
+        <p v-if="rfc" class="text-center">Hey rider, thank you for choosing ride for a cause. To know more about the program and make additional conributions follow the link below.</p>
+        <p v-if="!rfc" class="text-center">Hey rider, thank you for choosing Uber. We value the hardwork of our drivers. To support them we have introduced ride for a cause program. To know more about it follow the link below.</p>
+        <!-- Button trigger modal -->
+        <a href="#" class="btn btn-info text-white align-self-center" style="width: fit-content;">Know more</a>
+      </div>
+      <button v-on:click="finish()" class="btn btn-dark mt-auto align-self-center" style="width: fit-content;">View past rides</button>
     </div>
   </div>
 </div>
@@ -76,12 +90,13 @@
       kyd: "{{kyd | safe}}",
       index: {{index | safe}},
       fare: {{fare | safe}},
-      extrafare: {{extrafare | safe}},
+      extrafare: 0,
       rfc: {{rfc | safe}},
       needinfo: "{{needinfo | safe}}",
       amountraised: "{{amountraised | safe}}",
       amountneeded: "{{amountneeded | safe}}",
-      ridefinished: 0
+      ridefinished: 0,
+      donation: 0
     },
     methods: {
       finishRide() {
@@ -96,12 +111,13 @@
   var percent = 0;
   if(rider.rfc){
     percent = parseInt((rider.amountraised*100)/rider.amountneeded);
+    rider.extrafare = {{extrafare | safe}};
   }
   $(".progress-bar").css("width",percent+"%");
 
   $("#splbtn").on('click',function() {
-    var donation = parseFloat($("#extra_donation").val());
-    rider.amountraised = parseFloat(rider.amountraised) + parseFloat(rider.extrafare) + donation;
+    rider.donation = parseFloat($("#extra_donation").val());
+    rider.amountraised = parseFloat(rider.amountraised) + parseFloat(rider.extrafare) + rider.donation;
     $("#raised_amount").text(rider.amountraised);
     percent = parseInt((rider.amountraised*100)/rider.amountneeded);
     $(".progress-bar").animate({
