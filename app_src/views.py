@@ -49,9 +49,9 @@ def sign_up_landing():
     return render_template("/sign_up.html")
 
 
-@app.route("/sign-up/success")
-def succ():
-    return render_template("./signup_success.html")
+@app.route("/sign-up/success/<name>/<email>")
+def succ(name,email):
+    return render_template("./signup_success.html",name=name,email=email)
 
 
 @app.route(
