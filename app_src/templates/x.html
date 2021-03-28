@@ -7,13 +7,20 @@
   <div class="card shadow overflow-auto px-0" style="width: 30rem; height: 34rem;" id="view">
     <div v-if="!ridefinished" class="card-body d-flex flex-column">
       <!-- driver details here -->
-      <h1 style="color: green">Driver Details</h1>
-      <p>[[name]]</p>
-      <p>[[car]]</p>
-      <p>[[rating]]</p>
-      <p>[[carnumber]]</p>
-      <p>[[kyd]]</p>
-      <p>Your Donation: [[extrafare]]</p>
+      <div class="jumbotron">
+        <h3 class="display-4 mb-3">DRIVER DETAILS</h3>
+        <hr class="my-4">
+      </div>
+      <p>You are riding with <span style="font-weight: 700;">[[name]]</span></p>
+      <p>Car: [[car]] ([[carnumber]])</p>
+      <p>Rating: [[rating]]/5</p>
+      <div class="card p-2 shadow mt-auto" style="border-radius: 0.3rem;">
+        <p>[[kyd]] <span v-if="rfc">To know more about your driver click on the "Know your driver" button below.</span></p>
+        <!-- Button trigger modal -->
+        <button v-if="rfc" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Know your driver
+        </button>
+      </div>
       <button v-on:click="finishRide()" class="btn btn-dark mt-auto align-self-center" style="width: fit-content;">Finish Ride</button>
     </div>
     <div v-if="ridefinished" class="card-body d-flex flex-column">
@@ -22,11 +29,41 @@
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{name}}'s Story</h5>
+      </div>
+      <!-- modal body start -->
+      <div class="modal-body">
+        <div class="col-xs-12 col-sm-12 progress-container">
+          <div class="progress progress-striped active mb-3">
+            <div class="progress-bar bg-info progress-bar-striped progress-bar-success" style="width:0%"></div>
+          </div>
+        </div>
+        <p>Amount raised: <span class="badge bg-info text-white"><span id="raised_amount">{{amountraised}}</span>/{{amountneeded}}</span></p>
+        <p>Your current ride for cause donation is {{extrafare}}. Want to donate more? Just enter the amount below, it will be added to your fare.</p>
+        <form class="form-floating">
+          <input type="number" class="form-control" id="extra_donation" value="0">
+          <label for="floatingInputInvalid">Enter amount to donate</label>
+        </form>
+      </div>
+      <!-- modal body end -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="splbtn">Donate</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
 
 {% block scripts %}
 <script>
-
   var rider = new Vue({
     el: '#view',
     delimiters: ['[[', ']]'],
@@ -55,5 +92,21 @@
     }
   })
 
+  var percent = 0;
+  if(rider.rfc){
+    percent = parseInt((rider.amountraised*100)/rider.amountneeded);
+  }
+  $(".progress-bar").css("width",percent+"%");
+
+  $("#splbtn").on('click',function() {
+    var donation = parseFloat($("#extra_donation").val());
+    rider.amountraised = parseFloat(rider.amountraised) + parseFloat(rider.extrafare) + donation;
+    $("#raised_amount").text(rider.amountraised);
+    percent = parseInt((rider.amountraised*100)/rider.amountneeded);
+    $(".progress-bar").animate({
+      width: percent+"%"
+    }, 1000);
+    $(this).prop("disabled",true);
+  })
 </script>
 {% endblock %}
