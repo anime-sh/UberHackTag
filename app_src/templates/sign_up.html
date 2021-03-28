@@ -81,7 +81,7 @@
         response.json().then(function (data_) {
 
           if (data_.message === "OK") {
-            window.location.href = `${window.origin}/sign-up/success`;
+            window.location.href = `${window.origin}/sign-up/success/${entry.name}/${entry.email}`;
           } else {
             window.location.href = `${window.origin}/sign-up/missing/${data_.message}`;
           }
