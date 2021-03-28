@@ -108,6 +108,7 @@ def booked_cars():
                 "base": base_fare,
                 "extra": extra_fare
             }), 200)
+    return render_template('/sign_up.html')
 
 
 @app.route('/gmplot_pickup1_dropoff1')
@@ -141,7 +142,7 @@ def ride_car():
     global fare
     global extrafare
     global rfc
-    if (request.method == "POST"):
+    if (request.method == "GET"):
         print(request.args)
         with open('./data.json') as f:
             var = (json.load(f))
@@ -197,3 +198,4 @@ def ride_car():
                                    amountraised=dicto['amountraised'],
                                    amountneeded=dicto['amountneeded'])
 
+    render_template('/temp2.html')
