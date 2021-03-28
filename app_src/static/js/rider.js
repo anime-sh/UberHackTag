@@ -56,6 +56,12 @@ const rider = createApp({
             this.showmap = true;
             this.base_fare = data['base'];
             this.extra_fare = data['extra'];
+        },
+        async confirmRide() {
+            var rfcmode = 0
+            if(this.rfc)
+                rfcmode = 1
+            window.location.href = "/rider/riding/" + this.base_fare + "/" + this.extra_fare + "/" + rfcmode;
         }
     }
 })

@@ -108,7 +108,7 @@ def booked_cars():
                 "base": base_fare,
                 "extra": extra_fare
             }), 200)
-    return render_template('/sign_up.html')
+            
 
 
 @app.route('/gmplot_pickup1_dropoff1')
@@ -130,72 +130,44 @@ def show_map4():
 
 
 
-index = -1
-fare = 0
-extrafare = 0
-rfc = 0
 
-
-@app.route("/rider/riding", methods=["GET", "POST"])
-def ride_car():
-    global index
-    global fare
-    global extrafare
-    global rfc
-    if (request.method == "GET"):
-        print(request.args)
-        with open('./data.json') as f:
-            var = (json.load(f))
-        dicto = {}
-        if (index == -1):
-            #rfc = request.args['rfc'] //needs to be called via animesh
-            rfc = 1
-            if (rfc == 1):
-                index = random.randint(0, len(var['drivers']['Cause']) - 1)
-            else:
-                index = random.randint(0, len(var['drivers']['normal']) - 1)
-            #fare =int(request.args['fare'])
-            #extrafare = int(request.args['extrafare'])
-            fare = 100
-            extrafare = 200
-            print(index)
-        else:
-            fare = int(request.args['fare'])
-            extrafare = int(request.args['extrafare']) + int(
-                request.args['addition'])
-            #index = request.args['index']
-            #fare = int(request.args['fare'])
-            #extrafare = int(request.args['extrafare'])
-
-        index = int(index)
-        if (rfc):
-            dicto = var['drivers']['Cause'][index]
-        else:
-            dicto = var['drivers']['normal'][index]
-        if not rfc:
-            return render_template('/x.html',
-                                   name=dicto['name'],
-                                   car=dicto['car'],
-                                   rating=dicto['rating'],
-                                   carnumber=dicto['carnumber'],
-                                   kyd=dicto['kyd'],
-                                   index=index,
-                                   fare=fare,
-                                   extrafare=extrafare,
-                                   rfc=rfc)
-        else:
-            return render_template('/x.html',
-                                   name=dicto['name'],
-                                   car=dicto['car'],
-                                   rating=dicto['rating'],
-                                   carnumber=dicto['carnumber'],
-                                   kyd=dicto['kyd'],
-                                   index=index,
-                                   fare=fare,
-                                   extrafare=extrafare,
-                                   rfc=rfc,
-                                   needinfo=dicto['needinfo'],
-                                   amountraised=dicto['amountraised'],
-                                   amountneeded=dicto['amountneeded'])
-
-    render_template('/temp2.html')
+@app.route("/rider/riding/<int:fare>/<int:extrafare>/<int:rfc>", methods=["GET", "POST"])
+def ride_car(fare, extrafare, rfc):
+    with open('./data.json') as f:
+        var = (json.load(f))
+    dicto = {}
+    if (rfc == 1):
+        index = random.randint(0, len(var['drivers']['Cause']) - 1)
+    else:
+        index = random.randint(0, len(var['drivers']['normal']) - 1)
+    # fare = 100
+    # extrafare = 200
+    if (rfc):
+        dicto = var['drivers']['Cause'][index]
+    else:
+        dicto = var['drivers']['normal'][index]
+    if not rfc:
+        return render_template('/x.html',
+                               name=dicto['name'],
+                               car=dicto['car'],
+                               rating=dicto['rating'],
+                               carnumber=dicto['carnumber'],
+                               kyd=dicto['kyd'],
+                               index=index,
+                               fare=fare,
+                               extrafare=extrafare,
+                               rfc=rfc)
+    else:
+        return render_template('/x.html',
+                               name=dicto['name'],
+                               car=dicto['car'],
+                               rating=dicto['rating'],
+                               carnumber=dicto['carnumber'],
+                               kyd=dicto['kyd'],
+                               index=index,
+                               fare=fare,
+                               extrafare=extrafare,
+                               rfc=rfc,
+                               needinfo=dicto['needinfo'],
+                               amountraised=dicto['amountraised'],
+                               amountneeded=dicto['amountneeded'])

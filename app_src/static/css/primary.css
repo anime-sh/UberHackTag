@@ -17,7 +17,7 @@ body {
 }
 
 #view {
-  background:linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../images/bg4.jpg");
+  background:linear-gradient(rgba(255, 255, 255, 0.699), rgba(255, 255, 255, 0.603)), url("../images/bg4.jpg");
   background-repeat: no-repeat;
   /* background-attachment: fixed; */
   background-size: cover;
