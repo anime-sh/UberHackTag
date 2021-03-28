@@ -45,6 +45,7 @@
           </div>
         </div>
         <p>Amount raised: <span class="badge bg-info text-white"><span id="raised_amount">{{amountraised}}</span>/{{amountneeded}}</span></p>
+        <p>{{needinfo}}</p>
         <p>Your current ride for cause donation is {{extrafare}}. Want to donate more? Just enter the amount below, it will be added to your fare.</p>
         <form class="form-floating">
           <input type="number" class="form-control" id="extra_donation" value="0">
@@ -105,7 +106,7 @@
     percent = parseInt((rider.amountraised*100)/rider.amountneeded);
     $(".progress-bar").animate({
       width: percent+"%"
-    }, 1000);
+    }, 500);
     $(this).prop("disabled",true);
   })
 </script>
