@@ -128,7 +128,9 @@ def show_map3():
 def show_map4():
     return render_template('/gmplot_pickup2_dropoff2.html')
 
-
+@app.route('/pastrides')
+def pastrides():
+    return render_template('pastrides.html')
 
 
 @app.route("/rider/riding/<int:fare>/<int:extrafare>/<int:rfc>", methods=["GET", "POST"])

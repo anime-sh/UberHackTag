@@ -27,11 +27,11 @@
       <!-- ride finished here -->
       <div class="jumbotron">
         <h3 class="display-4 mb-3">FARE DETAILS</h3>
-        <h5 class="mb-1" style="font-weight: 500;">Base fare: [[fare]]</h5>
-        <h5><span v-if="rfc" class="badge bg-info text-white">Ride for cause fare: [[extrafare]]</span></h5>
-        <h5><span v-if="donation" class="badge bg-info text-white">Extra donation: [[donation]]</span></h5>
+        <h5 class="mb-1" style="font-weight: 500;">Base fare: &#8377;[[fare]]</h5>
+        <h5><span v-if="rfc" class="badge bg-info text-white">Ride for cause fare: &#8377;[[extrafare]]</span></h5>
+        <h5><span v-if="donation" class="badge bg-info text-white">Extra donation: &#8377;[[donation]]</span></h5>
         <hr class="my-4">
-        <h4 class="mb-1" style="font-weight: 500;">Total fare: [[fare+extrafare+donation]]</h4>
+        <h4 class="mb-1" style="font-weight: 500;">Total fare: &#8377;[[fare+extrafare+donation]]</h4>
       </div>
       <div class="card p-2 shadow mt-auto" style="border-radius: 0.3rem;">
         <p v-if="rfc" class="text-center">Hey rider, thank you for choosing ride for a cause. To know more about the program and make additional conributions follow the link below.</p>
@@ -103,7 +103,7 @@
         this.ridefinished = 1;
       },
       finish() {
-        window.location.href = "/rider";
+        window.location.href = "/pastrides";
       }
     }
   })
